@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34221.43
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{33297596-3731-465C-9449-FB6553A530B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{4287DE4B-3EF9-4747-97EA-C59F3F4F7015}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{2AB55B89-065D-464B-97B1-BBEAE1F1AAD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C5233698-7428-494A-8EAC-72802C3DB3D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progile.API", "Progile.API\Progile.API.csproj", "{45F5F7F2-025F-4E40-83D5-EBA634DB0CB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progile.Application", "Progile.Application\Progile.Application.csproj", "{55913437-1EDE-4680-B3FD-E4592851013C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progile.Domain", "Progile.Domain\Progile.Domain.csproj", "{90B1519D-8A3A-4981-AB4D-36C1B2943F3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progile.Infrastructure", "Progile.Infrastructure\Progile.Infrastructure.csproj", "{BAB2F314-8B77-4439-9A2A-13122008890D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progile.Persistence", "Progile.Persistence\Progile.Persistence.csproj", "{51EFE73E-110B-49D6-A8ED-C4C10A144B03}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45F5F7F2-025F-4E40-83D5-EBA634DB0CB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45F5F7F2-025F-4E40-83D5-EBA634DB0CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45F5F7F2-025F-4E40-83D5-EBA634DB0CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45F5F7F2-025F-4E40-83D5-EBA634DB0CB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55913437-1EDE-4680-B3FD-E4592851013C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55913437-1EDE-4680-B3FD-E4592851013C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55913437-1EDE-4680-B3FD-E4592851013C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55913437-1EDE-4680-B3FD-E4592851013C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90B1519D-8A3A-4981-AB4D-36C1B2943F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90B1519D-8A3A-4981-AB4D-36C1B2943F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90B1519D-8A3A-4981-AB4D-36C1B2943F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90B1519D-8A3A-4981-AB4D-36C1B2943F3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAB2F314-8B77-4439-9A2A-13122008890D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAB2F314-8B77-4439-9A2A-13122008890D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAB2F314-8B77-4439-9A2A-13122008890D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAB2F314-8B77-4439-9A2A-13122008890D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51EFE73E-110B-49D6-A8ED-C4C10A144B03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51EFE73E-110B-49D6-A8ED-C4C10A144B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51EFE73E-110B-49D6-A8ED-C4C10A144B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51EFE73E-110B-49D6-A8ED-C4C10A144B03}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{45F5F7F2-025F-4E40-83D5-EBA634DB0CB6} = {33297596-3731-465C-9449-FB6553A530B1}
+		{55913437-1EDE-4680-B3FD-E4592851013C} = {4287DE4B-3EF9-4747-97EA-C59F3F4F7015}
+		{90B1519D-8A3A-4981-AB4D-36C1B2943F3B} = {4287DE4B-3EF9-4747-97EA-C59F3F4F7015}
+		{BAB2F314-8B77-4439-9A2A-13122008890D} = {2AB55B89-065D-464B-97B1-BBEAE1F1AAD7}
+		{51EFE73E-110B-49D6-A8ED-C4C10A144B03} = {2AB55B89-065D-464B-97B1-BBEAE1F1AAD7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A0DD1E3D-F04C-4D5A-AEBF-4DA60A554770}
+	EndGlobalSection
+EndGlobal
