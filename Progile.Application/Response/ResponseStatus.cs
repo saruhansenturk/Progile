@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Progile.Infrastructure
+namespace Progile.Application.Response
 {
-    public class ServiceRegistration
+    public enum ResponseStatus
     {
-
+        Success,
+        NoData,
+        Fail,
+        Info
     }
 }

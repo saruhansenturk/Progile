@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Services\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -18,6 +17,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Progile.Application\Progile.Application.csproj" />
 	  <ProjectReference Include="..\Progile.Domain\Progile.Domain.csproj" />
 	</ItemGroup>
 
