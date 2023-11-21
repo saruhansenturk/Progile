@@ -21,10 +21,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Controllers\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\Progile.Infrastructure\Progile.Infrastructure.csproj" />
 	  <ProjectReference Include="..\Progile.Persistence\Progile.Persistence.csproj" />
 	</ItemGroup>
