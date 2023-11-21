@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Queries\TeamQueries\" />
     <Folder Include="Validators\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Abstraction\" />
