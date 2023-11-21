@@ -15,6 +15,7 @@ namespace Progile.Persistence
         public static void AddPersistanceServices(this IServiceCollection services)
         {
             services.AddScoped<ITeamWriteRepository, TeamWriteRepository>();
+            services.AddScoped<ITeamReadRepository, TeamReadRepository>();
         }
     }
 }
