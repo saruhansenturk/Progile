@@ -18,7 +18,7 @@ public class GetTeamByIdQueryHandler : IRequestHandler<GetTeamByIdQueryRequest, 
 
     public async Task<CommonResponse<TeamDetailsDto>> Handle(GetTeamByIdQueryRequest request, CancellationToken cancellationToken)
     {
-        var chosenTeam = _teamReadRepository.GetByIdAsync(request.Id.ToString());
+        var chosenTeam = await _teamReadRepository.GetByIdAsync(request.Id.ToString());
 
         if (chosenTeam == null)
         {
@@ -36,10 +36,9 @@ public class GetTeamByIdQueryHandler : IRequestHandler<GetTeamByIdQueryRequest, 
             Message = "Team query successful.",
             Data = new TeamDetailsDto
             {
-                Name = chosenTeam.Result.Name,
-                Description = chosenTeam.Result.Description
-            },
-            Errors = null,
+                Name = chosenTeam.Name,
+                Description = chosenTeam.Description
+            }
         };
     }
 }
