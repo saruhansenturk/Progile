@@ -1,4 +1,4 @@
-namespace Progile.Application.Dtos;
+namespace Progile.Application.Dtos.Team;
 
 public class TeamDetailsDto
 {

@@ -1,10 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Progile.Application.Dtos;
+using Progile.Application.Dtos.Team;
 using Progile.Application.Features.Commands.TeamCommands.CreateTeamCommand;
 using Progile.Application.Features.Commands.TeamCommands.UpdateTeamCommand;
+using Progile.Application.Features.Queries.TeamQueries.GetAllTeamQuery;
 using Progile.Application.Features.Queries.TeamQueries.GetTeamByIdQuery;
+using Progile.Application.Paging;
 using Progile.Application.Response;
 
 namespace Progile.API.Controllers
@@ -26,6 +28,15 @@ namespace Progile.API.Controllers
             CommonResponse<CreateTeamDto> response = await _mediator.Send(request);
             return response;
         }
+
+
+        [HttpPost("[action]")]
+        public async Task<CommonResponse<Pagination<GetAllTeamDto>>> GetAllTeam([FromBody] GetAllTeamQueryRequest request)
+        {
+            CommonResponse<Pagination<GetAllTeamDto>> response = await _mediator.Send(request);
+            return response;
+        }
+
 
         [HttpGet]
         public async Task<CommonResponse<TeamDetailsDto>> GetTeam([FromQuery] GetTeamByIdQueryRequest request)
