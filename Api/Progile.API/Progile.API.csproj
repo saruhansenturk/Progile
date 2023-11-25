@@ -21,8 +21,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Progile.Infrastructure\Progile.Infrastructure.csproj" />
-	  <ProjectReference Include="..\Progile.Persistence\Progile.Persistence.csproj" />
+	  <ProjectReference Include="..\..\Infrastructure\Progile.Infrastructure\Progile.Infrastructure.csproj" />
+	  <ProjectReference Include="..\..\Infrastructure\Progile.Persistence\Progile.Persistence.csproj" />
 	</ItemGroup>
 
 </Project>

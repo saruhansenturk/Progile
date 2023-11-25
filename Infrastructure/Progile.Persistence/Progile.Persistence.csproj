@@ -17,8 +17,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Progile.Application\Progile.Application.csproj" />
-	  <ProjectReference Include="..\Progile.Domain\Progile.Domain.csproj" />
+	  <ProjectReference Include="..\..\Core\Progile.Application\Progile.Application.csproj" />
+	  <ProjectReference Include="..\..\Core\Progile.Domain\Progile.Domain.csproj" />
 	</ItemGroup>
 
 </Project>
