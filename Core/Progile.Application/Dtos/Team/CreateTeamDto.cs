@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Progile.Application.Dtos
+namespace Progile.Application.Dtos.Team
 {
-    public class UpdateTeamDto
+    public class CreateTeamDto
     {
         public string Name { get; set; }
         public string Description { get; set; }
