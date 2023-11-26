@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Progile.Application.Dtos.Team;
 using Progile.Application.Features.Commands.TeamCommands.CreateTeamCommand;
+using Progile.Application.Features.Commands.TeamCommands.DeleteTeam;
 using Progile.Application.Features.Commands.TeamCommands.UpdateTeamCommand;
 using Progile.Application.Features.Queries.TeamQueries.GetAllTeamQuery;
 using Progile.Application.Features.Queries.TeamQueries.GetTeamByIdQuery;
@@ -49,6 +50,13 @@ namespace Progile.API.Controllers
         public async Task<CommonResponse<UpdateTeamDto>> UpdateTeam([FromBody] UpdateTeamCommandRequest request)
         {
             CommonResponse<UpdateTeamDto> response = await _mediator.Send(request);
+            return response;
+        }
+        
+        [HttpPost("[action]")]
+        public async Task<CommonResponse<bool>> Delete([FromQuery] DeleteTeamCommandRequest request)
+        {
+            CommonResponse<bool> response = await _mediator.Send(request);
             return response;
         }
 
