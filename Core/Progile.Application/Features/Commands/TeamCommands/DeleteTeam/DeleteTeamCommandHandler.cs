@@ -27,12 +27,11 @@ public class DeleteTeamCommandHandler : IRequestHandler<DeleteTeamCommandRequest
                     ResponseStatus = ResponseStatus.Success,
                     Message = "Team successfully deleted!"
                 };
-            else
-                return new CommonResponse<bool>
-                {
-                    Message = "An error occured while executing the delete command!",
-                    ResponseStatus = ResponseStatus.Fail
-                };
+            return new CommonResponse<bool>
+            {
+                Message = "An error occured while executing the delete command!",
+                ResponseStatus = ResponseStatus.Fail
+            };
         }
         return new CommonResponse<bool>
         {
