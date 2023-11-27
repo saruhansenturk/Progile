@@ -42,7 +42,8 @@ namespace Progile.Application.Features.Commands.TeamCommands.UpdateTeamCommand
                             Description = updatedTeam.Data.Description,
                             Name = updatedTeam.Data.Name
                         },
-                        ResponseStatus = ResponseStatus.Success
+                        ResponseStatus = ResponseStatus.Success,
+                        Message = "Team successfully updated!"
                     };
 
                 return new CommonResponse<UpdateTeamDto>
