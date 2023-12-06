@@ -11,8 +11,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-    <Folder Include="Services\" />
     <Folder Include="Filters\" />
   </ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Core\Progile.Application\Progile.Application.csproj" />
+	</ItemGroup>
 
 </Project>

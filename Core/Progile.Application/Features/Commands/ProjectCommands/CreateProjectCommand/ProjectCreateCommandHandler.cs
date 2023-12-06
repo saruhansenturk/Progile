@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MediatR;
+using Progile.Application.Abstraction.Services;
 using Progile.Application.Dtos.Project;
 using Progile.Application.Extensions;
 using Progile.Application.Repositories;
@@ -15,14 +16,17 @@ namespace Progile.Application.Features.Commands.ProjectCommands.CreateProjectCom
     public class ProjectCreateCommandHandler: IRequestHandler<CreateProjectCommandRequest, CommonResponse<CreateProjectDto>>
     {
         private readonly IProjectWriteRepository _projectWriteRepository;
-
-        public ProjectCreateCommandHandler(IProjectWriteRepository projectWriteRepository)
+        private readonly IAuthService _authService;
+        public ProjectCreateCommandHandler(IProjectWriteRepository projectWriteRepository, IAuthService authService)
         {
             _projectWriteRepository = projectWriteRepository;
+            _authService = authService;
         }
 
         public async Task<CommonResponse<CreateProjectDto>> Handle(CreateProjectCommandRequest request, CancellationToken cancellationToken)
         {
+            var sss = _authService.LoginAsync("", "", 12);
+
             var createdProject = await _projectWriteRepository.AddAsync(new Project
             {
                 Name = request.Name,

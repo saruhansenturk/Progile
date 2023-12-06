@@ -5,10 +5,12 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Progile.Application.Abstraction.Services;
 using Progile.Application.Repositories;
 using Progile.Domain.Entities;
 using Progile.Domain.Entities.Common;
 using Progile.Persistence.Repositories;
+using Progile.Persistence.Services;
 
 namespace Progile.Persistence
 {
@@ -33,6 +35,9 @@ namespace Progile.Persistence
                 var classType = classTypes.FirstOrDefault(t => t.Name.Contains(interfaceType.Name[1..]));
                 services.AddScoped(interfaceType, classType!);
             }
+
+            // todo below registration process will change. Only test.
+            services.AddScoped<IAuthService, AuthService>();
         }
     }
 }
