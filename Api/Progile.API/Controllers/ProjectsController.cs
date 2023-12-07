@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Progile.Application.Dtos.Project;
 using Progile.Application.Features.Commands.ProjectCommands.CreateProjectCommand;
+using Progile.Application.Features.Commands.ProjectCommands.UpdateProjectCommand;
 using Progile.Application.Features.Queries.ProjectQueries.GetAllByTeamProjectQuery;
 using Progile.Application.Paging;
 using Progile.Application.Response;
@@ -32,7 +33,15 @@ namespace Progile.API.Controllers
         {
             CommonResponse<Pagination<ProjectGetAllByTeamDto>> response = await _mediator.Send(request);
             return response;
-        } 
+        }
+
+        [HttpPost("[action]")]
+        public async Task<CommonResponse<bool>> UpdateProject([FromBody] UpdateProjectCommandRequest request)
+        {
+            CommonResponse<bool> response = await _mediator.Send(request);
+            return response;
+        }
+
 
         //[HttpPost("[action]")]
         //public async Task<CommonResponse<Pagination<GetAllProjectDto>>> GetAllProject([FromBody] GetAllProjectQueryRequest request)
@@ -49,12 +58,7 @@ namespace Progile.API.Controllers
         //    return response;
         //}
 
-        //[HttpPost("[action]")]
-        //public async Task<CommonResponse<UpdateProjectDto>> UpdateProject([FromBody] UpdateProjectCommandRequest request)
-        //{
-        //    CommonResponse<UpdateProjectDto> response = await _mediator.Send(request);
-        //    return response;
-        //}
+
 
         //[HttpPost("[action]")]
         //public async Task<CommonResponse<bool>> Delete([FromQuery] DeleteProjectCommandRequest request)
