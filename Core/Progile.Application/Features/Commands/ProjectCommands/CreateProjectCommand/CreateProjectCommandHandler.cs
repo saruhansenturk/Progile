@@ -13,11 +13,11 @@ using Progile.Domain.Entities;
 
 namespace Progile.Application.Features.Commands.ProjectCommands.CreateProjectCommand
 {
-    public class ProjectCreateCommandHandler: IRequestHandler<CreateProjectCommandRequest, CommonResponse<CreateProjectDto>>
+    public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommandRequest, CommonResponse<CreateProjectDto>>
     {
         private readonly IProjectWriteRepository _projectWriteRepository;
         private readonly IAuthService _authService;
-        public ProjectCreateCommandHandler(IProjectWriteRepository projectWriteRepository, IAuthService authService)
+        public CreateProjectCommandHandler(IProjectWriteRepository projectWriteRepository, IAuthService authService)
         {
             _projectWriteRepository = projectWriteRepository;
             _authService = authService;
