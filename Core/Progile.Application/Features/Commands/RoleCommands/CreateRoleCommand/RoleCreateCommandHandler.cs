@@ -40,7 +40,8 @@ namespace Progile.Application.Features.Commands.RoleCommands.CreateRoleCommand
                 return new CommonResponse<CreateRoleDto>
                 {
                     Data = createdRole?.Data?.MapTo<CreateRoleDto>(),
-                    ResponseStatus = ResponseStatus.Success
+                    ResponseStatus = ResponseStatus.Success,
+                    Message = "Role created for Team successfully!"
                 };
             }
 
