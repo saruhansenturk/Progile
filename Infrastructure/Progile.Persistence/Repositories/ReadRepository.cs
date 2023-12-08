@@ -37,15 +37,16 @@ namespace Progile.Persistence.Repositories
             return new Pagination<T>(totalCount, query.ToList());
         }
         /// <summary>
-        /// field id ye gore reflectionla o alanı burada lambda seklinde olusturur. Gelen alan ismine gore generic olarak kosul ifadesi olusturur.
+        /// Retrieves a paginated list of entities based on the specified identifier and field using reflection. 
+        /// Generates a generic conditional expression in a lambda form according to the given field name.
         /// </summary>
         /// <private-method>_GetExpression</private-method>
-        /// <param name="id"></param>
-        /// <param name="field"></param>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
-        /// <param name="tracking"></param>
-        /// <returns></returns>
+        /// <param name="id">The unique identifier to filter entities.</param>
+        /// <param name="field">The field name for which the conditional expression is generated.</param>
+        /// <param name="skip">The number of entities to skip before starting to return results.</param>
+        /// <param name="take">The maximum number of entities to return.</param>
+        /// <param name="tracking">Specifies whether change tracking should be enabled (default is true).</param>
+        /// <returns>A paginated result containing the total count of entities and a subset based on the specified conditions.</returns>
         public Pagination<T> GetAllById(Guid id, string field, int skip, int take, bool tracking = true)
         {
             var totalCount = Table.AsQueryable().Count(t => !t.IsDeleted);
@@ -61,6 +62,28 @@ namespace Progile.Persistence.Repositories
                 query = query.AsNoTracking();
 
             return new Pagination<T>(totalCount, query.ToList());
+        }
+
+        /// <summary>
+        /// Retrieves a list of entities based on the specified identifier and field using reflection. 
+        /// Generates a generic conditional expression in a lambda form according to the given field name.
+        /// </summary>
+        /// <private-method>_GetExpression</private-method>
+        /// <param name="id">The unique identifier to filter entities.</param>
+        /// <param name="field">The field name for which the conditional expression is generated.</param>
+        /// <param name="tracking">Specifies whether change tracking should be enabled (default is true).</param>
+        /// <returns>A list of entities matching the specified conditions.</returns>
+        public List<T> GetAllById(Guid id, string field, bool tracking = true)
+        {
+            var expression = _GetExpression(id, field);
+
+            var query = Table.AsQueryable().Where(t => !t.IsDeleted).Where(expression);
+
+            if (!tracking)
+                query = query.AsNoTracking();
+
+            return query.ToList();
+
         }
 
         public async Task<T?> GetByIdAsync(string id, bool tracking = true)

@@ -12,6 +12,8 @@ namespace Progile.Application.Repositories
     {
         Pagination<T> GetAll(int skip, int take, bool tracking = true);
         Pagination<T> GetAllById(Guid id, string field, int skip, int take, bool tracking = true);
+        List<T> GetAllById(Guid id, string field, bool tracking = true);
+
         Task<T?> GetByIdAsync(string id, bool tracking = true);
     }
 }
