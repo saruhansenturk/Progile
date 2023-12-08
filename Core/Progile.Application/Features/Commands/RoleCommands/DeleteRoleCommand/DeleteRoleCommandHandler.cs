@@ -39,7 +39,7 @@ namespace Progile.Application.Features.Commands.RoleCommands.DeleteRoleCommand
             return new CommonResponse<bool>
             {
                 Message = "There is no role for this id.",
-                ResponseStatus = ResponseStatus.Fail
+                ResponseStatus = ResponseStatus.NoData
             };
         }
     }
