@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Progile.Application.Dtos.Project;
 using Progile.Application.Features.Commands.ProjectCommands.CreateProjectCommand;
+using Progile.Application.Features.Commands.ProjectCommands.DeleteProjectCommand;
 using Progile.Application.Features.Commands.ProjectCommands.UpdateProjectCommand;
 using Progile.Application.Features.Queries.ProjectQueries.GetAllByTeamProjectQuery;
+using Progile.Application.Features.Queries.ProjectQueries.GetAllProjectQuery;
 using Progile.Application.Paging;
 using Progile.Application.Response;
 
@@ -43,12 +45,12 @@ namespace Progile.API.Controllers
         }
 
 
-        //[HttpPost("[action]")]
-        //public async Task<CommonResponse<Pagination<GetAllProjectDto>>> GetAllProject([FromBody] GetAllProjectQueryRequest request)
-        //{
-        //    CommonResponse<Pagination<GetAllProjectDto>> response = await _mediator.Send(request);
-        //    return response;
-        //}
+        [HttpPost("[action]")]
+        public async Task<CommonResponse<Pagination<GetAllProjectDto>>> GetAllProject([FromBody] GetAllProjectQueryRequest request)
+        {
+            CommonResponse<Pagination<GetAllProjectDto>> response = await _mediator.Send(request);
+            return response;
+        }
 
 
         //[HttpGet]
@@ -60,12 +62,12 @@ namespace Progile.API.Controllers
 
 
 
-        //[HttpPost("[action]")]
-        //public async Task<CommonResponse<bool>> Delete([FromQuery] DeleteProjectCommandRequest request)
-        //{
-        //    CommonResponse<bool> response = await _mediator.Send(request);
-        //    return response;
-        //}
+        [HttpPost("[action]")]
+        public async Task<CommonResponse<bool>> Delete([FromQuery] DeleteProjectCommandRequest request)
+        {
+            CommonResponse<bool> response = await _mediator.Send(request);
+            return response;
+        }
 
     }
 }
