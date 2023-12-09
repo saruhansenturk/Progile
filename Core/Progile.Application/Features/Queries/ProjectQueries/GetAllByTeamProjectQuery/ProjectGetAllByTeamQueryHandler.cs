@@ -9,6 +9,7 @@ using Progile.Application.Extensions;
 using Progile.Application.Paging;
 using Progile.Application.Repositories;
 using Progile.Application.Response;
+using Progile.Domain.Enums;
 
 namespace Progile.Application.Features.Queries.ProjectQueries.GetAllByTeamProjectQuery
 {
@@ -23,7 +24,7 @@ namespace Progile.Application.Features.Queries.ProjectQueries.GetAllByTeamProjec
 
         public async Task<CommonResponse<Pagination<ProjectGetAllByTeamDto>>> Handle(ProjectGetAllByTeamQueryRequest request, CancellationToken cancellationToken)
         {
-            var projects = _projectReadRepository.GetAllById(Guid.Parse(request.TeamId), "TeamId", request.Skip, request.Take, false);
+            var projects = _projectReadRepository.GetAllById(Guid.Parse(request.TeamId), ForeignKey.TeamId.ToString(), request.Skip, request.Take, false);
 
             if (projects.TotalCount > 0)
             {

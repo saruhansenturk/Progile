@@ -2,6 +2,7 @@ using MediatR;
 using Progile.Application.Dtos.Role;
 using Progile.Application.Repositories;
 using Progile.Application.Response;
+using Progile.Domain.Enums;
 
 namespace Progile.Application.Features.Queries.RoleQueries.GetAllByTeamIdQuery
 {
@@ -16,7 +17,7 @@ namespace Progile.Application.Features.Queries.RoleQueries.GetAllByTeamIdQuery
 
         public async Task<CommonResponse<List<RoleGetAllByTeamDto>>> Handle(RoleGetAllByTeamQueryRequest request, CancellationToken cancellationToken)
         {
-            var roles = _roleReadRepository.GetAllById(Guid.Parse(request.TeamId), "TeamId", false);
+            var roles = _roleReadRepository.GetAllById(Guid.Parse(request.TeamId), ForeignKey.TeamId.ToString(), false);
 
             if (roles.Any())
             {
