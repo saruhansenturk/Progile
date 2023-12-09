@@ -6,6 +6,7 @@ using Progile.Application.Features.Commands.ProjectCommands.DeleteProjectCommand
 using Progile.Application.Features.Commands.ProjectCommands.UpdateProjectCommand;
 using Progile.Application.Features.Queries.ProjectQueries.GetAllByTeamProjectQuery;
 using Progile.Application.Features.Queries.ProjectQueries.GetAllProjectQuery;
+using Progile.Application.Features.Queries.ProjectQueries.GetByIdProjectQuery;
 using Progile.Application.Paging;
 using Progile.Application.Response;
 
@@ -53,12 +54,12 @@ namespace Progile.API.Controllers
         }
 
 
-        //[HttpGet]
-        //public async Task<CommonResponse<ProjectDetailsDto>> GetProject([FromQuery] GetProjectByIdQueryRequest request)
-        //{
-        //    CommonResponse<ProjectDetailsDto> response = await _mediator.Send(request);
-        //    return response;
-        //}
+        [HttpGet("[action]")]
+        public async Task<CommonResponse<GetByIdProjectDto>> GetProject([FromQuery] GetByIdProjectQueryRequest request)
+        {
+            CommonResponse<GetByIdProjectDto> response = await _mediator.Send(request);
+            return response;
+        }
 
 
 
