@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Progile.Application.Dtos.Task;
 using Progile.Application.Features.Commands.TaskCommands.CreateTaskHandler;
+using Progile.Application.Features.Queries.TaskQueries.GetTaskByProjectQuery;
 using Progile.Application.Paging;
 using Progile.Application.Response;
 
@@ -25,13 +26,13 @@ namespace Progile.API.Controllers
             return response;
         }
 
-        //[HttpPost("[action]")]
-        //public async Task<CommonResponse<Pagination<TaskGetAllByTeamDto>>> GetAllTaskByTeam(
-        //    TaskGetAllByTeamQueryRequest request)
-        //{
-        //    CommonResponse<Pagination<TaskGetAllByTeamDto>> response = await _mediator.Send(request);
-        //    return response;
-        //}
+        [HttpPost("[action]")]
+        public async Task<CommonResponse<Pagination<AllTaskByProjectIdDtos>>> GetAllTaskByProject(
+            GetAllTaskByProjectIdQueryRequest request)
+        {
+            CommonResponse<Pagination<AllTaskByProjectIdDtos>> response = await _mediator.Send(request);
+            return response;
+        }
 
         //[HttpPost("[action]")]
         //public async Task<CommonResponse<bool>> UpdateTask([FromBody] UpdateTaskCommandRequest request)
