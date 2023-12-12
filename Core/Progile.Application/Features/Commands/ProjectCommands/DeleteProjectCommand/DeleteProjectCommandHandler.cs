@@ -30,7 +30,7 @@ namespace Progile.Application.Features.Commands.ProjectCommands.DeleteProjectCom
                     return new CommonResponse<bool>
                     {
                         ResponseStatus = ResponseStatus.Success,
-                        Message = "Project ssuccessfully deleted!"
+                        Message = "Project successfully deleted!"
                     };
                 }
 
