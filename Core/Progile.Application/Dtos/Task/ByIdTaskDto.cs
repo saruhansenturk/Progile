@@ -2,7 +2,7 @@ using Progile.Domain.Enums;
 
 namespace Progile.Application.Dtos.Task;
 
-public class AllTaskByProjectIdDto
+public class ByIdTaskDto
 {
     public string Name { get; set; }
     public DateTime StartDate { get; set; }

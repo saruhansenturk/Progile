@@ -27,12 +27,11 @@ namespace Progile.Application.Extensions
         //    return (TDest?)destination;
         //}
 
-        public static TDest? MapTo<TDest>(this object source) where TDest : new()
+        public static TDest MapTo<TDest>(this object? source) where TDest : new()
         {
             if (source == null)
             {
-                // veya exception fırlatılabilir
-                return default;
+                return default(TDest);
             }
 
             var srcProperties = source.GetType().GetProperties();
@@ -43,17 +42,13 @@ namespace Progile.Application.Extensions
             {
                 var destProp = destProperties.FirstOrDefault(t => t.Name == srcProp.Name && t.PropertyType == srcProp.PropertyType);
 
-                if (destProp != null)
-                {
-                    var value = srcProp.GetValue(source);
+                if (destProp == null) continue;
+                var value = srcProp.GetValue(source);
 
-                    if (value != null)
-                    {
-                        destProp.SetValue(destination, value);
-                    }
-                    // else: Kaynak değeri null ise, hedefe atama yapma
+                if (value != null)
+                {
+                    destProp.SetValue(destination, value);
                 }
-                // else: Uyumsuz özellik isimleri, hedefe atama yapma
             }
 
             return destination;

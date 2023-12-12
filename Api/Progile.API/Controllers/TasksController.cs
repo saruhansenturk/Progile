@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Progile.Application.Dtos.Task;
 using Progile.Application.Features.Commands.TaskCommands.CreateTaskHandler;
+using Progile.Application.Features.Queries.TaskQueries.GetTaskByIdQuery;
 using Progile.Application.Features.Queries.TaskQueries.GetTaskByProjectQuery;
 using Progile.Application.Paging;
 using Progile.Application.Response;
@@ -27,10 +28,17 @@ namespace Progile.API.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<CommonResponse<Pagination<AllTaskByProjectIdDtos>>> GetAllTaskByProject(
+        public async Task<CommonResponse<Pagination<AllTaskByProjectIdDto>>> GetAllTaskByProject(
             GetAllTaskByProjectIdQueryRequest request)
         {
-            CommonResponse<Pagination<AllTaskByProjectIdDtos>> response = await _mediator.Send(request);
+            CommonResponse<Pagination<AllTaskByProjectIdDto>> response = await _mediator.Send(request);
+            return response;
+        }
+
+        [HttpGet("[action]")]
+        public async Task<CommonResponse<ByIdTaskDto>> GetTask([FromQuery] GetTaskByIdQueryRequest request)
+        {
+            CommonResponse<ByIdTaskDto> response = await _mediator.Send(request);
             return response;
         }
 
@@ -41,23 +49,12 @@ namespace Progile.API.Controllers
         //    return response;
         //}
 
-
         //[HttpPost("[action]")]
         //public async Task<CommonResponse<Pagination<GetAllTaskDto>>> GetAllTask([FromBody] GetAllTaskQueryRequest request)
         //{
         //    CommonResponse<Pagination<GetAllTaskDto>> response = await _mediator.Send(request);
         //    return response;
         //}
-
-
-        //[HttpGet("[action]")]
-        //public async Task<CommonResponse<GetByIdTaskDto>> GetTask([FromQuery] GetByIdTaskQueryRequest request)
-        //{
-        //    CommonResponse<GetByIdTaskDto> response = await _mediator.Send(request);
-        //    return response;
-        //}
-
-
 
         //[HttpPost("[action]")]
         //public async Task<CommonResponse<bool>> Delete([FromQuery] DeleteTaskCommandRequest request)
