@@ -8,7 +8,7 @@ using Progile.Domain.Enums;
 
 namespace Progile.Application.Features.Queries.TaskQueries.GetTaskByProjectQuery
 {
-    public class GetAllTaskByProjectIdQueryHandler : IRequestHandler<GetAllTaskByProjectIdQueryRequest, CommonResponse<Pagination<AllTaskByProjectIdDtos>>>
+    public class GetAllTaskByProjectIdQueryHandler : IRequestHandler<GetAllTaskByProjectIdQueryRequest, CommonResponse<Pagination<AllTaskByProjectIdDto>>>
     {
         private readonly ITaskReadRepository _taskReadRepository;
 
@@ -17,17 +17,17 @@ namespace Progile.Application.Features.Queries.TaskQueries.GetTaskByProjectQuery
             _taskReadRepository = taskReadRepository;
         }
 
-        public async Task<CommonResponse<Pagination<AllTaskByProjectIdDtos>>> Handle(GetAllTaskByProjectIdQueryRequest request, CancellationToken cancellationToken)
+        public async Task<CommonResponse<Pagination<AllTaskByProjectIdDto>>> Handle(GetAllTaskByProjectIdQueryRequest request, CancellationToken cancellationToken)
         {
             var tasks = _taskReadRepository.GetAllById(Guid.Parse(request.ProjectId), ForeignKey.ProjectId.ToString(), request.Skip, request.Take, false);
 
             if (tasks.Items.Any())
             {
-                var mappedTasks = tasks.Items.Select(t => t.MapTo<AllTaskByProjectIdDtos>()).ToList();
+                var mappedTasks = tasks.Items.Select(t => t.MapTo<AllTaskByProjectIdDto>()).ToList();
 
-                return new CommonResponse<Pagination<AllTaskByProjectIdDtos>>
+                return new CommonResponse<Pagination<AllTaskByProjectIdDto>>
                 {
-                    Data = new Pagination<AllTaskByProjectIdDtos>
+                    Data = new Pagination<AllTaskByProjectIdDto>
                     {
                         Items = mappedTasks,
                         TotalCount = tasks.TotalCount
@@ -36,7 +36,7 @@ namespace Progile.Application.Features.Queries.TaskQueries.GetTaskByProjectQuery
                 };
             }
 
-            return new CommonResponse<Pagination<AllTaskByProjectIdDtos>>
+            return new CommonResponse<Pagination<AllTaskByProjectIdDto>>
             {
                 Data = null,
                 ResponseStatus = ResponseStatus.NoData,
@@ -45,7 +45,7 @@ namespace Progile.Application.Features.Queries.TaskQueries.GetTaskByProjectQuery
         }
     }
 
-    public class GetAllTaskByProjectIdQueryRequest : IRequest<CommonResponse<Pagination<AllTaskByProjectIdDtos>>>
+    public class GetAllTaskByProjectIdQueryRequest : IRequest<CommonResponse<Pagination<AllTaskByProjectIdDto>>>
     {
         public string ProjectId { get; set; }
         public int Skip { get; set; }
