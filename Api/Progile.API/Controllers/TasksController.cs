@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Progile.Application.Dtos.Task;
 using Progile.Application.Features.Commands.TaskCommands.CreateTaskHandler;
 using Progile.Application.Features.Commands.TaskCommands.DeleteTaskCommand;
+using Progile.Application.Features.Commands.TaskCommands.UpdateTaskCommand;
 using Progile.Application.Features.Queries.TaskQueries.GetTaskByIdQuery;
 using Progile.Application.Features.Queries.TaskQueries.GetTaskByProjectQuery;
 using Progile.Application.Paging;
@@ -50,12 +51,12 @@ namespace Progile.API.Controllers
             return response;
         }
 
-        //[HttpPost("[action]")]
-        //public async Task<CommonResponse<bool>> UpdateTask([FromBody] UpdateTaskCommandRequest request)
-        //{
-        //    CommonResponse<bool> response = await _mediator.Send(request);
-        //    return response;
-        //}
+        [HttpPost("[action]")]
+        public async Task<CommonResponse<bool>> UpdateTask([FromBody] UpdateTaskCommandRequest request)
+        {
+            CommonResponse<bool> response = await _mediator.Send(request);
+            return response;
+        }
 
         //[HttpPost("[action]")]
         //public async Task<CommonResponse<Pagination<GetAllTaskDto>>> GetAllTask([FromBody] GetAllTaskQueryRequest request)
