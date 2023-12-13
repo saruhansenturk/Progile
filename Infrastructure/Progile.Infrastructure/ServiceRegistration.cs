@@ -19,13 +19,13 @@ namespace Progile.Infrastructure
         {
             services.AddScoped<ITokenHandler, TokenHandler>();
             
-            var ss  =services.AddScoped<ITokenConfig, TokenConfig>(c =>
+            services.AddScoped<ITokenConfig, TokenConfig>(c =>
             {
                 var config = configuration.GetBindFromAppSettings<TokenConfig>();
                 return config;
             });
 
-            Console.WriteLine();
+
         }
     }
 }
