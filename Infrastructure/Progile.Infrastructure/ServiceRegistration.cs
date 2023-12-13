@@ -4,18 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Progile.Application.Abstraction.Token;
 using Progile.Infrastructure.Config;
+using Progile.Infrastructure.Extensions;
 using Progile.Infrastructure.Services;
 
 namespace Progile.Infrastructure
 {
     public static class ServiceRegistration
     {
-        public static void AddInfrastructureServices(this IServiceCollection services)
+        public static void AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<ITokenHandler, TokenHandler>();
+            
+            services.AddScoped<ITokenConfig, TokenConfig>(c =>
+            {
+                var config = configuration.GetBindFromAppSettings<TokenConfig>();
+                return config;
+            });
+
+
         }
     }
 }
