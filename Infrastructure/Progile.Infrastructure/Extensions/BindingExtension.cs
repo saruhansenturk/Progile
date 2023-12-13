@@ -1,4 +1,6 @@
-﻿namespace Progile.API.Extensions
+﻿using Microsoft.Extensions.Configuration;
+
+namespace Progile.Infrastructure.Extensions
 {
     public static class BindingExtension
     {
