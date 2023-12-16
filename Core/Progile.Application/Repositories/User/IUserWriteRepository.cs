@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Progile.Domain.Entities;
 
-namespace Progile.Application.Repositories
-{
-    public interface IUserWriteRepository: IWriteRepository<User>
-    {
-    }
-}
+//namespace Progile.Application.Repositories
+//{
+//    public interface IUserWriteRepository: IWriteRepository<User>
+//    {
+//    }
+//}

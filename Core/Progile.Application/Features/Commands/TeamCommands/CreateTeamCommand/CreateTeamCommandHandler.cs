@@ -33,7 +33,7 @@ namespace Progile.Application.Features.Commands.TeamCommands.CreateTeamCommand
             if (saveChanges.Data == 1)
                 return new CommonResponse<CreateTeamDto>
                 {
-                    Data = createdTeam.MapTo<CreateTeamDto>(),
+                    Data = createdTeam.Data.MapTo<CreateTeamDto>(),
                     Message = "Team created successfuly!",
                     ResponseStatus = ResponseStatus.Success
                 };
@@ -54,8 +54,4 @@ namespace Progile.Application.Features.Commands.TeamCommands.CreateTeamCommand
         public string Name { get; set; }
         public string Description { get; set; }
     }
-    //public class CreateTeamCommandResponse
-    //{
-    //}
-
 }
