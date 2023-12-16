@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Progile.Persistence.Contexts;
@@ -11,9 +12,11 @@ using Progile.Persistence.Contexts;
 namespace Progile.Persistence.Migrations
 {
     [DbContext(typeof(ProgileContext))]
-    partial class ProgileContextModelSnapshot : ModelSnapshot
+    [Migration("20231213194617_mig_1")]
+    partial class mig_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,15 +64,17 @@ namespace Progile.Persistence.Migrations
                     b.Property<Guid>("TaskId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("UserId1")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("TaskId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Comments");
                 });
@@ -132,12 +137,7 @@ namespace Progile.Persistence.Migrations
                     b.Property<string>("NormalizedName")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("TeamId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TeamId");
 
                     b.ToTable("Roles");
                 });
@@ -296,6 +296,12 @@ namespace Progile.Persistence.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("TaskId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("TeamId")
+                        .HasColumnType("uuid");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("boolean");
 
@@ -304,52 +310,11 @@ namespace Progile.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("TaskId");
+
+                    b.HasIndex("TeamId");
+
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("RoleUser", b =>
-                {
-                    b.Property<string>("RolesId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("UsersId")
-                        .HasColumnType("text");
-
-                    b.HasKey("RolesId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("RoleUser");
-                });
-
-            modelBuilder.Entity("TaskUser", b =>
-                {
-                    b.Property<Guid>("TasksId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("UsersId")
-                        .HasColumnType("text");
-
-                    b.HasKey("TasksId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("TaskUser");
-                });
-
-            modelBuilder.Entity("TeamUser", b =>
-                {
-                    b.Property<Guid>("TeamsId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("UsersId")
-                        .HasColumnType("text");
-
-                    b.HasKey("TeamsId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("TeamUser");
                 });
 
             modelBuilder.Entity("Progile.Domain.Entities.Comment", b =>
@@ -361,10 +326,8 @@ namespace Progile.Persistence.Migrations
                         .IsRequired();
 
                     b.HasOne("Progile.Domain.Entities.User", "User")
-                        .WithMany("Comments")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("UserId1");
 
                     b.Navigation("Task");
 
@@ -375,17 +338,6 @@ namespace Progile.Persistence.Migrations
                 {
                     b.HasOne("Progile.Domain.Entities.Team", "Team")
                         .WithMany("Projects")
-                        .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Team");
-                });
-
-            modelBuilder.Entity("Progile.Domain.Entities.Role", b =>
-                {
-                    b.HasOne("Progile.Domain.Entities.Team", "Team")
-                        .WithMany()
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -404,49 +356,15 @@ namespace Progile.Persistence.Migrations
                     b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("RoleUser", b =>
-                {
-                    b.HasOne("Progile.Domain.Entities.Role", null)
-                        .WithMany()
-                        .HasForeignKey("RolesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Progile.Domain.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("TaskUser", b =>
+            modelBuilder.Entity("Progile.Domain.Entities.User", b =>
                 {
                     b.HasOne("Progile.Domain.Entities.Task", null)
-                        .WithMany()
-                        .HasForeignKey("TasksId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Users")
+                        .HasForeignKey("TaskId");
 
-                    b.HasOne("Progile.Domain.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("TeamUser", b =>
-                {
                     b.HasOne("Progile.Domain.Entities.Team", null)
-                        .WithMany()
-                        .HasForeignKey("TeamsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Progile.Domain.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Users")
+                        .HasForeignKey("TeamId");
                 });
 
             modelBuilder.Entity("Progile.Domain.Entities.Project", b =>
@@ -457,16 +375,15 @@ namespace Progile.Persistence.Migrations
             modelBuilder.Entity("Progile.Domain.Entities.Task", b =>
                 {
                     b.Navigation("Comment");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Progile.Domain.Entities.Team", b =>
                 {
                     b.Navigation("Projects");
-                });
 
-            modelBuilder.Entity("Progile.Domain.Entities.User", b =>
-                {
-                    b.Navigation("Comments");
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }
