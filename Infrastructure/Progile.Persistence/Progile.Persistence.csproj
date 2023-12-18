@@ -14,6 +14,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Core\Progile.Application\Progile.Application.csproj" />
+	  <ProjectReference Include="..\Progile.Infrastructure\Progile.Infrastructure.csproj" />
 	</ItemGroup>
 
 </Project>
