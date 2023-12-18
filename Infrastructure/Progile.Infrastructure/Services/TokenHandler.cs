@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.IdentityModel.Tokens;
 using Progile.Application.Abstraction.Token;
+using Progile.Application.Dtos.Token;
 using Progile.Infrastructure.Config;
 
 namespace Progile.Infrastructure.Services
@@ -22,9 +25,26 @@ namespace Progile.Infrastructure.Services
         /// </summary>
         /// <param name="second"></param>
         /// <returns></returns>
-        public string CreateAccessToken(int second)
+        public LoginToken CreateAccessToken(int second)
         {
-            return "";
+            LoginToken token = new();
+
+            SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(_tokenConfig.SecretKey));
+
+            SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha256);
+
+            token.Expiration = DateTime.Now.AddMinutes(second);
+            JwtSecurityToken securityToken = new(
+                audience: _tokenConfig.Audience,
+                issuer: _tokenConfig.Issuer,
+                expires: token.Expiration,
+                notBefore: DateTime.Now,
+                signingCredentials: signingCredentials);
+
+            JwtSecurityTokenHandler tokenHandler = new();
+            token.AccessToken = tokenHandler.WriteToken(securityToken);
+
+            return token;
         }
     }
 }

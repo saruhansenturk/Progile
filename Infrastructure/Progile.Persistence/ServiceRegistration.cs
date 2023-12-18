@@ -4,10 +4,13 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Progile.Application.Abstraction.Services;
+using Progile.Application.Abstraction.Token;
+using Progile.Domain.Entities;
 using Progile.Persistence.Contexts;
 using Progile.Persistence.Services;
 
@@ -38,11 +41,23 @@ namespace Progile.Persistence
 
             // Register services
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped(typeof(IUserService<>), typeof(UserService<>));
 
             // Register DbContext
             var connection = configuration.GetConnectionString("ProgileConnectionString");
             services.AddDbContext<ProgileContext>(opt => opt.UseNpgsql(connection));
-        }
+
+            services.AddIdentity<User, Role>(opt =>
+                {
+                    opt.Password.RequireDigit = false;
+                    opt.Password.RequireUppercase = false;
+                    opt.Password.RequiredLength = 3;
+                    opt.Password.RequireLowercase = false;
+                    opt.Password.RequireNonAlphanumeric = false;
+                })
+                .AddEntityFrameworkStores<ProgileContext>()
+                .AddDefaultTokenProviders();
         }
     }
+}
 
