@@ -25,7 +25,7 @@ namespace Progile.Persistence
             Assembly assembly = Assembly.GetExecutingAssembly();
 
             // get interface types Assembly
-            Assembly assemblyInterface = Assembly.LoadFrom("..\\..\\Infrastructure\\Progile.Persistence\\bin\\Debug\\net7.0\\Progile.Application.dll");
+            Assembly assemblyInterface = Assembly.LoadFrom("..\\..\\Infrastructure\\Progile.Persistence\\bin\\Debug\\net8.0\\Progile.Application.dll");
 
             var interfaceTypes = assemblyInterface.GetTypes()
                 .Where(t => t.IsInterface && t.Name?.EndsWith("Repository") == true).ToList();
