@@ -22,6 +22,14 @@ namespace Progile.Persistence.Services
 
         public async Task<CommonResponse<bool>> CreateAsync(CreateUserDto createUserDto)
         {
+            if (!string.Equals(createUserDto.Password, createUserDto.PasswordConfirm))
+                return new CommonResponse<bool>
+                {
+                    Data = false,
+                    ResponseStatus = ResponseStatus.Info,
+                    Message = "Your password and password confirm fields does not matched!"
+                };
+
             IdentityResult result = await _userManager.CreateAsync(new User
             {
                 Id = Guid.NewGuid().ToString(),
