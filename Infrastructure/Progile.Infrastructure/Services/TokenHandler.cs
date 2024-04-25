@@ -24,7 +24,9 @@ namespace Progile.Infrastructure.Services
         {
             LoginToken token = new();
 
-            SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(_tokenConfig.SecretKey));
+            var key = Base64UrlEncoder.DecodeBytes(_tokenConfig.SecretKey);
+
+            SymmetricSecurityKey securityKey = new(key);
 
             SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha256);
 

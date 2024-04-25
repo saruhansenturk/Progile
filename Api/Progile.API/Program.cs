@@ -29,8 +29,6 @@ builder.Services.AddApplicationServices();
 builder.Services.AddPersistanceServices(builder.Configuration);
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
-builder.Services.AddResponseCompression();
-
 
 var app = builder.Build();
 
