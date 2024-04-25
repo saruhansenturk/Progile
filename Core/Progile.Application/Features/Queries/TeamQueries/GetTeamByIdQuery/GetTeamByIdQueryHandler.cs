@@ -1,6 +1,5 @@
 using MediatR;
 using Progile.Application.Dtos.Team;
-using Progile.Application.Extensions;
 using Progile.Application.Repositories;
 using Progile.Application.Response;
 

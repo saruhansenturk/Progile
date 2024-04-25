@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 using Progile.Application.Abstraction.Token;
 using Progile.Application.Dtos.Token;
-using Progile.Infrastructure.Config;
 
 namespace Progile.Infrastructure.Services
 {

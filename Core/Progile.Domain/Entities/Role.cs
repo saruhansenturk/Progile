@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Progile.Domain.Entities.Common;
 
 namespace Progile.Domain.Entities;
 

@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Progile.Application.Dtos.Team;
-using Progile.Application.Extensions;
 using Progile.Application.Repositories;
 using Progile.Application.Response;
 

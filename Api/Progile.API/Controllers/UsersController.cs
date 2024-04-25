@@ -1,6 +1,5 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Progile.Application.Dtos.Role;
 using Progile.Application.Dtos.Token;
 using Progile.Application.Features.Commands.UserCommands.CreateUserCommands;
 using Progile.Application.Features.Commands.UserCommands.LoginUserCommands;

@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Progile.Application.Dtos.Project;
-using Progile.Application.Dtos.Team;
 using Progile.Application.Paging;
 using Progile.Application.Repositories;
 using Progile.Application.Response;
-using Progile.Domain.Entities;
 
 namespace Progile.Application.Features.Queries.ProjectQueries.GetAllProjectQuery
 {

@@ -1,4 +1,3 @@
-using Progile.Application.Paging;
 using Progile.Application.Repositories;
 using Progile.Domain.Entities;
 using Progile.Persistence.Contexts;

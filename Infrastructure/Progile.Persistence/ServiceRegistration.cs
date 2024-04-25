@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Progile.Application.Abstraction.Services;
-using Progile.Application.Abstraction.Token;
 using Progile.Domain.Entities;
 using Progile.Persistence.Contexts;
 using Progile.Persistence.Services;
@@ -24,8 +18,11 @@ namespace Progile.Persistence
             // getting currently executing assembly
             Assembly assembly = Assembly.GetExecutingAssembly();
 
+            string path = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Progile.Application.dll"));
+            Assembly assemblyInterface = Assembly.LoadFrom(path);
+            
             // get interface types Assembly
-            Assembly assemblyInterface = Assembly.LoadFrom("..\\..\\Infrastructure\\Progile.Persistence\\bin\\Debug\\net8.0\\Progile.Application.dll");
+            // Assembly assemblyInterface = Assembly.LoadFrom(@"..\..\Infrastructure\Progile.Persistence\bin\Debug\net8.0\Progile.Application.dll");
 
             var interfaceTypes = assemblyInterface.GetTypes()
                 .Where(t => t.IsInterface && t.Name?.EndsWith("Repository") == true).ToList();

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Progile.Application.Paging;
+﻿using Progile.Application.Paging;
 using Progile.Domain.Entities.Common;
 
 namespace Progile.Application.Repositories
