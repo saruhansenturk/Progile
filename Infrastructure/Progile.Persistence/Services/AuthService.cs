@@ -44,7 +44,7 @@ namespace Progile.Persistence.Services
                     Message = "User not logined! Please try again!"
                 };
 
-            LoginToken token = _tokenHandler.CreateAccessToken(accesstokenLifeTime);
+            LoginToken token = _tokenHandler.CreateAccessToken(accesstokenLifeTime, user);
             return new CommonResponse<LoginToken>
             {
                 Data = token,

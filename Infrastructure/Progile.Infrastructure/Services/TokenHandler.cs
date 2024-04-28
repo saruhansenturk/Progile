@@ -1,8 +1,10 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Progile.Application.Abstraction.Token;
 using Progile.Application.Dtos.Token;
+using Progile.Domain.Entities;
 
 namespace Progile.Infrastructure.Services
 {
@@ -19,8 +21,9 @@ namespace Progile.Infrastructure.Services
         /// Create Token for the AuthService Login method.
         /// </summary>
         /// <param name="second"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
-        public LoginToken CreateAccessToken(int second)
+        public LoginToken CreateAccessToken(int second, User user)
         {
             LoginToken token = new();
 
@@ -33,6 +36,12 @@ namespace Progile.Infrastructure.Services
             token.Expiration = DateTime.Now.AddMinutes(second);
             JwtSecurityToken securityToken = new(
                 audience: _tokenConfig.Audience,
+                claims: new List<Claim>
+                {
+                    new (nameof(user.UserName), user.UserName ?? ""),
+                    new (nameof(user.Email),  user.Email ?? ""),
+                    new (nameof(user.Id),  user.Id)
+                },
                 issuer: _tokenConfig.Issuer,
                 expires: token.Expiration,
                 notBefore: DateTime.Now,
