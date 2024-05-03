@@ -1,3 +1,4 @@
+using Progile.API.Middleware;
 using Progile.Application;
 using Progile.Infrastructure;
 using Progile.Persistence;
@@ -24,10 +25,10 @@ builder.Services.AddCors(options =>
     });
 });
 
-
 builder.Services.AddApplicationServices();
 builder.Services.AddPersistanceServices(builder.Configuration);
 builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddRateLimitMidd(builder.Configuration);
 
 
 var app = builder.Build();
@@ -41,6 +42,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors();
+
+app.UseRateLimiter();
 
 app.UseHttpsRedirection();
 

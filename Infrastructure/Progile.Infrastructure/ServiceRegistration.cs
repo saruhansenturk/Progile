@@ -18,7 +18,11 @@ namespace Progile.Infrastructure
                 return config;
             });
 
-
+            services.AddScoped<IRateLimiterConfig, RateLimiterConfig>(c =>
+            {
+                var config = configuration.GetBindFromAppSettings<RateLimiterConfig>();
+                return config;
+            });
         }
     }
 }

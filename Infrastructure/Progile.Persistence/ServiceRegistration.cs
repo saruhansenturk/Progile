@@ -8,6 +8,7 @@ using Progile.Domain.Entities;
 using Progile.Persistence.Contexts;
 using Progile.Persistence.Services;
 
+
 namespace Progile.Persistence
 {
     public static class ServiceRegistration
@@ -20,7 +21,7 @@ namespace Progile.Persistence
 
             string path = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Progile.Application.dll"));
             Assembly assemblyInterface = Assembly.LoadFrom(path);
-            
+
             // get interface types Assembly
             // Assembly assemblyInterface = Assembly.LoadFrom(@"..\..\Infrastructure\Progile.Persistence\bin\Debug\net8.0\Progile.Application.dll");
 
