@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Progile.Application.Dtos.Token;
 using Progile.Application.Features.Commands.UserCommands.CreateUserCommands;
 using Progile.Application.Features.Commands.UserCommands.LoginUserCommands;
@@ -7,6 +8,7 @@ using Progile.Application.Response;
 
 namespace Progile.API.Controllers
 {
+    [EnableRateLimiting("FixedRateLimit")]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
