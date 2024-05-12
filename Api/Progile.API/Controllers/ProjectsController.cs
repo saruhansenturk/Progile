@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Progile.Application.Dtos.Project;
 using Progile.Application.Features.Commands.ProjectCommands.CreateProjectCommand;
@@ -47,6 +48,7 @@ namespace Progile.API.Controllers
 
 
         [HttpPost("[action]")]
+        [Authorize]
         public async Task<CommonResponse<Pagination<GetAllProjectDto>>> GetAllProject([FromBody] GetAllProjectQueryRequest request)
         {
             CommonResponse<Pagination<GetAllProjectDto>> response = await _mediator.Send(request);

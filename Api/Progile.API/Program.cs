@@ -1,5 +1,10 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Progile.API.Middleware;
 using Progile.Application;
+using Progile.Application.Abstraction.Token;
 using Progile.Infrastructure;
 using Progile.Persistence;
 
@@ -19,10 +24,8 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(policy =>
     {
         policy
-            //.WithOrigins("http://localhost:5173")
             .AllowAnyHeader()
             .AllowAnyOrigin()
-            //.AllowCredentials()
             .AllowAnyMethod();
     });
 });
@@ -31,6 +34,31 @@ builder.Services.AddApplicationServices();
 builder.Services.AddPersistanceServices(builder.Configuration);
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddRateLimitMidd(builder.Configuration);
+
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(opt =>
+{
+    using ServiceProvider serviceProvider = builder.Services.BuildServiceProvider();
+
+    var tokenConfig = serviceProvider.GetService<ITokenConfig>();
+
+    opt.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidIssuer = tokenConfig?.Issuer,
+        ValidAudience = tokenConfig?.Audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Base64UrlEncoder.DecodeBytes(tokenConfig?.SecretKey)),
+        ValidateIssuer = true,
+        ValidateLifetime = false,
+        ValidateIssuerSigningKey = true
+    };
+});
+
+builder.Services.AddAuthorization();
 
 
 var app = builder.Build();
@@ -49,6 +77,7 @@ app.UseRateLimiter();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

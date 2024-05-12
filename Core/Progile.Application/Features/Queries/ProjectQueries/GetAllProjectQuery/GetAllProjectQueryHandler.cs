@@ -44,7 +44,7 @@ namespace Progile.Application.Features.Queries.ProjectQueries.GetAllProjectQuery
             {
                 Data = null,
                 ResponseStatus = ResponseStatus.NoData,
-                Message = "There is no team!"
+                Message = "There is no project for your search criteria!"
             };
         }
     }
