@@ -35,7 +35,7 @@ builder.Services.AddPersistanceServices(builder.Configuration);
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddRateLimitMidd(builder.Configuration);
 
-
+// TODO bir extension metoda tasimak gerekir.
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
