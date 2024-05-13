@@ -370,3 +370,6 @@ FodyWeavers.xsd
 
 #cstrings
 cstrings.*
+
+#connection
+connection.*
